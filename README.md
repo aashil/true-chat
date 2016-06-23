@@ -8,8 +8,8 @@ Node(4.1.1) and npm(2.14.4) are required to run this project.
 
 ## Usage
 
-1) Run "npm install" to install all the dependencie of the project.
-2) Run "npm start" to run the npm-lite server with TSC set to watch mode.
+1. Run `npm install` to install all the dependencie of the project.
+2. Run `npm start` to run the npm-lite server with TSC set to watch mode.
 
 ## Contributing
 
