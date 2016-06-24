@@ -8,7 +8,7 @@ import { Chat } from './chat';
 @Injectable()
 export class ChatService {
 
-  private chatsUrl = 'app/chat-1';  // URL to web api
+  private chatsUrl = 'localhost:8080';  // URL to web api
 
   constructor(private http: Http) { }
 

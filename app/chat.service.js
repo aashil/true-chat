@@ -14,7 +14,7 @@ require('rxjs/add/operator/toPromise');
 var ChatService = (function () {
     function ChatService(http) {
         this.http = http;
-        this.chatsUrl = 'app/chat-1'; // URL to web api
+        this.chatsUrl = 'localhost:8080'; // URL to web api
     }
     ChatService.prototype.getChats = function () {
         return this.http.get(this.chatsUrl)
