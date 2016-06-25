@@ -3,25 +3,29 @@
 	<title>Tutorial</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script type="text/javascript">
+		var username = prompt("Enter your name:", "");
+	</script>
 </head>
 <body ng-controller="MainCtl">
 	<div class="jumbotron">
 		<h1>True Chat</h1>
 	</div>
 	<ul>
-		<li ng-repeat="m in messages">{{m}}</li>
+		<li ng-repeat="m in messages"><script type="text/javascript">document.write(username)</script> : {{m}}</li>
 	</ul>
 	
 	<input type="text" placeholder="type here" ng-model="msg"><button class="btn btn-primary" ng-click="send()">Send</button>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+
 <script>
 	var app = angular.module("chat", []);
 	
 	app.controller("MainCtl", ["$scope", function($scope){
 		
 		$scope.messages = [];
-		
+		console.log(username);
 		var conn = new WebSocket("ws://localhost/ws");
 		
 		conn.onclose = function(e){
@@ -46,7 +50,7 @@
 			conn.send($scope.msg);
 			$scope.msg = '';
 		}
-	}])
+	}]);
 </script>
 
 </body>

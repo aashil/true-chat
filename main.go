@@ -45,6 +45,7 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Code from Jake Coffman's tutorials 
 func main() {
 	// command line flags
 	port := flag.Int("port", 80, "port to serve on")
