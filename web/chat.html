@@ -13,13 +13,14 @@
 		<li ng-repeat="m in messages track by $index">{{username}} : {{m}}</li>
 	</ul>
 	
-	<input type="text" placeholder="type here" ng-model="msg" ng-enter="send()"><button class="btn btn-primary" ng-click="send()">Send</button>
+	<input type="text" placeholder="type here" ng-model="msg" ng-enter="send()" style="margin-left: 1cm; height: 50px; width: 80%;"/><button class="btn btn-primary" ng-click="send()" style="margin-left: 1cm; height: 50px; width: 100px;">Send</button>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-cookies.min.js"></script>
 <script>
-	var app = angular.module("chat", []);
-	
-	app.directive('ngEnter', function() {
+	var app = angular.module("chat", ["ngCookies"]);
+
+	app.directive("ngEnter", function() {
         return function(scope, element, attrs) {
             element.bind("keydown keypress", function(event) {
                 if(event.which === 13) {
