@@ -10,7 +10,7 @@
 	</div>
 
 	<ul>
-		<li ng-repeat="m in messages">{{username}} : {{m}}</li>
+		<li ng-repeat="m in messages track by $index">{{username}} : {{m}}</li>
 	</ul>
 	
 	<input type="text" placeholder="type here" ng-model="msg" ng-enter="send()"><button class="btn btn-primary" ng-click="send()">Send</button>
