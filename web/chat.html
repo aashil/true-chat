@@ -10,7 +10,7 @@
 	</div>
 
 	<ul>
-		<li ng-repeat="m in messages track by $index">{{username}} : {{m}}</li>
+		<li ng-repeat="m in messages track by $index">{{m.username}} : {{m.message}}</li>
 	</ul>
 	
 	<input type="text" placeholder="type here" ng-model="msg" ng-enter="send()" style="margin-left: 1cm; height: 50px; width: 80%;"/><button class="btn btn-primary" ng-click="send()" style="margin-left: 1cm; height: 50px; width: 100px;">Send</button>
@@ -39,28 +39,42 @@
 		$scope.messages = [];
 		$scope.username = $window.prompt("Please enter your name:", "");
 		console.log($scope.username);
-		var conn = new WebSocket("ws://localhost/ws");
+		var conn = new WebSocket("ws://localhost:12000/ws");
 		
 		conn.onclose = function(e){
 			$scope.$apply(function(){
-				$scope.messages.push("Disconnected");
+				var message = [];
+				message.username = $scope.username;
+				message.message = "Disconnected";
+				$scope.messages.push(message);
 			})
 		}
 		
 		conn.onopen = function(e){
 			$scope.$apply(function(){
-				$scope.messages.push("Connected");
+				var message = [];
+				message.username = $scope.username;
+				message.message = "Connected";
+				$scope.messages.push(message);
 			})
 		}
 		
 		conn.onmessage = function(e){
 			$scope.$apply(function(){
-				$scope.messages.push(e.data);
+			
+				var data = e.data;
+				
+				var i = data.indexOf(':');
+				var message = [];
+				message.username = data.slice(0, i).trim();
+				message.message = data.slice(i + 1, data.length).trim();
+				
+				$scope.messages.push(message);
 			})
 		}
 		
 		$scope.send = function(){
-			conn.send($scope.msg);
+			conn.send($scope.username + ":" +$scope.msg);
 			$scope.msg = '';
 		}
 	}]);
